@@ -10,6 +10,9 @@ public record CardDetailsDTO(Long id,
                              String blockReason,
                              int blocksAmount,
                              Long columnId,
-                             String columnName
-) {
+                             String columnName,
+                             OffsetDateTime datePlaced,  // Novo campo
+                             OffsetDateTime dateMoved){
+
 }
+

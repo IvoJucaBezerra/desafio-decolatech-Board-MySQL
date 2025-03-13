@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.liquibase:liquibase-core:4.29.1")
+    implementation("org.liquibase:liquibase-core:4.31.1")
     implementation("mysql:mysql-connector-java:8.0.33")
     implementation("org.projectlombok:lombok:1.18.34")
 

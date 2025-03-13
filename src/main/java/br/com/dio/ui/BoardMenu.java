@@ -11,6 +11,7 @@ import br.com.dio.service.CardService;
 import lombok.AllArgsConstructor;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import static br.com.dio.persistence.config.ConnectionConfig.getConnection;
@@ -35,8 +36,9 @@ public class BoardMenu {
                 System.out.println("6 - Ver board");
                 System.out.println("7 - Ver coluna com cards");
                 System.out.println("8 - Ver card");
-                System.out.println("9 - Voltar para o menu anterior um card");
-                System.out.println("10 - Sair");
+                System.out.println("9 - Ver datas do card");
+                System.out.println("10 - Voltar para o menu anterior um card");
+                System.out.println("11 - Sair");
                 option = scanner.nextInt();
                 switch (option) {
                     case 1 -> createCard();
@@ -47,8 +49,9 @@ public class BoardMenu {
                     case 6 -> showBoard();
                     case 7 -> showColumn();
                     case 8 -> showCard();
-                    case 9 -> System.out.println("Voltando para o menu anterior");
-                    case 10 -> System.exit(0);
+                    case 9 -> showCardDates();
+                    case 10 -> System.out.println("Voltando para o menu anterior");
+                    case 11 -> System.exit(0);
                     default -> System.out.println("Opção inválida, informe uma opção do menu");
                 }
             }
@@ -58,6 +61,42 @@ public class BoardMenu {
         }
     }
 
+    private void showCardDates() throws SQLException {
+        System.out.println("Informe o id do card que deseja visualizar as datas");
+        var selectedCardId = scanner.nextLong();
+
+        try (var connection = getConnection()) {
+            new CardQueryService(connection).findById(selectedCardId)
+                    .ifPresentOrElse(
+                            card -> {
+                                System.out.printf("Card %s - %s\n", card.id(), card.title());
+
+                                // Corrigido para usar o método correto (com a primeira letra minúscula)
+                                if (card.datePlaced() != null) {
+                                    System.out.printf("Data de Colocação: %s\n", card.datePlaced());
+                                } else {
+                                    System.out.println("Card ainda não foi colocado na coluna inicial.");
+                                }
+
+                                if (card.dateMoved() != null) {
+                                    System.out.printf("Data de Movimentação: %s\n", card.dateMoved());
+                                } else {
+                                    System.out.println("Card ainda não foi movido.");
+                                }
+
+                                if (card.blockedAt() != null) {
+                                    System.out.printf("Data de Bloqueio: %s\n", card.blockedAt());
+                                } else {
+                                    System.out.println("Card não está bloqueado.");
+                                }
+                            },
+                            () -> System.out.printf("Não existe um card com o id %s\n", selectedCardId)
+                    );
+        }
+    }
+
+
+
     private void createCard() throws SQLException{
         var card = new CardEntity();
         System.out.println("Informe o título do card");
@@ -65,6 +104,7 @@ public class BoardMenu {
         System.out.println("Informe a descrição do card");
         card.setDescription(scanner.next());
         card.setBoardColumn(entity.getInitialColumn());
+        card.setDatePlaced(LocalDateTime.now());
         try(var connection = getConnection()){
             new CardService(connection).create(card);
         }

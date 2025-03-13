@@ -1,41 +1,174 @@
-ago. 29, 2024 10:37:26 AM liquibase.changelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202408191938.sql
-ago. 29, 2024 10:37:26 AM liquibase.changelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
+INFORMAÇÕES: Reading from `banco-board`.databasechangelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202408210954.sql
-ago. 29, 2024 10:37:26 AM liquibase.changelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202408211004.sql
-ago. 29, 2024 10:37:26 AM liquibase.changelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202408211005.sql
-ago. 29, 2024 10:37:26 AM liquibase.changelog
+mar. 13, 2025 7:09:02 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202408281807.sql
-ago. 29, 2024 10:37:26 AM liquibase.changelog
-INFORMAÇÕES: Reading from board.DATABASECHANGELOG
-Database is up to date, no changesets to execute
-ago. 29, 2024 10:37:26 AM liquibase.changelog
-INFORMAÇÕES: Reading from board.DATABASECHANGELOG
+mar. 13, 2025 7:09:02 PM liquibase.changelog
+INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-dateplacecolumn.sql
+mar. 13, 2025 7:09:03 PM liquibase.lockservice
+INFORMAÇÕES: Successfully acquired change log lock
+mar. 13, 2025 7:09:03 PM liquibase.command
+INFORMAÇÕES: Using deploymentId: 1903741586
+mar. 13, 2025 7:09:03 PM liquibase.changelog
+INFORMAÇÕES: Reading from `banco-board`.databasechangelog
+Running Changeset: db/changelog/migrations/db.changelog-dateplacecolumn.sql::2025::ivo
+mar. 13, 2025 7:09:03 PM liquibase.changelog
+GRAVE: ChangeSet db/changelog/migrations/db.changelog-dateplacecolumn.sql::2025::ivo encountered an exception.
+liquibase.exception.DatabaseException: Duplicate column name 'date_placed' [Failed SQL: (1060) ALTER TABLE CARDS ADD COLUMN date_placed TIMESTAMP]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185)
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790)
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:267)
+	at liquibase.Scope.child(Scope.java:271)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91)
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112)
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100)
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.command.CommandScope.execute(CommandScope.java:241)
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333)
+	at liquibase.Liquibase.update(Liquibase.java:205)
+	at liquibase.Liquibase.update(Liquibase.java:188)
+	at liquibase.Liquibase.update(Liquibase.java:175)
+	at liquibase.Liquibase.update(Liquibase.java:155)
+	at br.com.dio.persistence.migration.MigrationStrategy.executeMigration(MigrationStrategy.java:36)
+	at br.com.dio.Main.main(Main.java:15)
+Caused by: java.sql.SQLSyntaxErrorException: Duplicate column name 'date_placed'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491)
+	... 43 more
+
 
 UPDATE SUMMARY
 Run:                          0
 Previously run:               5
 Filtered out:                 0
 -------------------------------
-Total change sets:            5
+Total change sets:            6
 
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: UPDATE SUMMARY
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: Run:                          0
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: Previously run:               5
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: Filtered out:                 0
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: -------------------------------
-ago. 29, 2024 10:37:26 AM liquibase.util
-INFORMAÇÕES: Total change sets:            5
-ago. 29, 2024 10:37:26 AM liquibase.util
+mar. 13, 2025 7:09:03 PM liquibase.util
+INFORMAÇÕES: Total change sets:            6
+mar. 13, 2025 7:09:03 PM liquibase.util
 INFORMAÇÕES: Update summary generated
-ago. 29, 2024 10:37:26 AM liquibase.lockservice
+mar. 13, 2025 7:09:03 PM liquibase.command
+INFORMAÇÕES: Update command encountered an exception.
+mar. 13, 2025 7:09:03 PM liquibase.lockservice
 INFORMAÇÕES: Successfully released change log lock
-ago. 29, 2024 10:37:26 AM liquibase.command
+mar. 13, 2025 7:09:03 PM liquibase.command
+INFORMAÇÕES: Logging exception.
+ERROR: Exception Details
+ERROR: Exception Primary Class:  SQLSyntaxErrorException
+ERROR: Exception Primary Reason:  Duplicate column name 'date_placed'
+ERROR: Exception Primary Source:  MySQL 8.0.41
+mar. 13, 2025 7:09:03 PM liquibase.command
 INFORMAÇÕES: Command execution complete
+liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-dateplacecolumn.sql::2025::ivo:
+     Reason: liquibase.exception.DatabaseException: Duplicate column name 'date_placed' [Failed SQL: (1060) ALTER TABLE CARDS ADD COLUMN date_placed TIMESTAMP]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:300)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.command.CommandScope.execute(CommandScope.java:241)
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333)
+	at liquibase.Liquibase.update(Liquibase.java:205)
+	at liquibase.Liquibase.update(Liquibase.java:188)
+	at liquibase.Liquibase.update(Liquibase.java:175)
+	at liquibase.Liquibase.update(Liquibase.java:155)
+	at br.com.dio.persistence.migration.MigrationStrategy.executeMigration(MigrationStrategy.java:36)
+	at br.com.dio.Main.main(Main.java:15)
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-dateplacecolumn.sql::2025::ivo:
+     Reason: liquibase.exception.DatabaseException: Duplicate column name 'date_placed' [Failed SQL: (1060) ALTER TABLE CARDS ADD COLUMN date_placed TIMESTAMP]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155)
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112)
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100)
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253)
+	... 15 more
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-dateplacecolumn.sql::2025::ivo:
+     Reason: liquibase.exception.DatabaseException: Duplicate column name 'date_placed' [Failed SQL: (1060) ALTER TABLE CARDS ADD COLUMN date_placed TIMESTAMP]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:840)
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122)
+	at liquibase.Scope.lambda$child$0(Scope.java:201)
+	at liquibase.Scope.child(Scope.java:210)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:267)
+	at liquibase.Scope.child(Scope.java:271)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91)
+	... 23 more
+Caused by: liquibase.exception.DatabaseException: Duplicate column name 'date_placed' [Failed SQL: (1060) ALTER TABLE CARDS ADD COLUMN date_placed TIMESTAMP]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185)
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790)
+	... 38 more
+Caused by: java.sql.SQLSyntaxErrorException: Duplicate column name 'date_placed'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491)
+	... 43 more

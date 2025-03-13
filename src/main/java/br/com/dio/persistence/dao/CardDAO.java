@@ -24,7 +24,7 @@ public class CardDAO {
             statement.setString(i ++, entity.getTitle());
             statement.setString(i ++, entity.getDescription());
             statement.setLong(i, entity.getBoardColumn().getId());
-            statement.executeUpdate();
+            statement.setTimestamp(i, java.sql.Timestamp.valueOf(entity.getDatePlaced()));            statement.executeUpdate();
             if (statement instanceof StatementImpl impl){
                 entity.setId(impl.getLastInsertID());
             }
@@ -77,7 +77,9 @@ public class CardDAO {
                         resultSet.getString("b.block_reason"),
                         resultSet.getInt("blocks_amount"),
                         resultSet.getLong("c.board_column_id"),
-                        resultSet.getString("bc.name")
+                        resultSet.getString("bc.name"),
+                        toOffsetDateTime(resultSet.getTimestamp("c.date_placed")), // A data de colocação
+                        toOffsetDateTime(resultSet.getTimestamp("c.date_moved"))
                 );
                 return Optional.of(dto);
             }
